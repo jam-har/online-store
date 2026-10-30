@@ -1,5 +1,6 @@
 package com.pluralsight;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -63,6 +64,33 @@ public class Store {
     public static void loadInventory(String fileName, ArrayList<Product> inventory) {
         // TODO: skip the header line, then read each line, split on "|",
         //       create a Product object, and add it to the inventory list
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("cities.csv"));
+
+            // The first line of the file is the column names, not a city.
+            // Read it once before the loop so the loop never sees it
+            // (parseInt("population") would throw NumberFormatException).
+            bufferedReader.readLine();                                  // first line is the header: read it and drop it
+
+            String csvLine;
+            while ((csvLine = bufferedReader.readLine()) != null) {
+                String[] tokens = csvLine.split("\\|");
+                String name = tokens[0];
+                String country = tokens[1];
+                int cityPopulation = Integer.parseInt(tokens[2]);       // every token is text: convert the number
+
+                // One object per line, built from the three values
+                City city = new City(name, country, cityPopulation);
+
+                // %,d prints the number with thousands separators: 13,960,000
+                System.out.printf("%s, %s: %,d people%n",
+                        city.getName(), city.getCountry(), city.getPopulation());
+            }
+
+            bufferedReader.close();
+
+        } catch (Exception ex) {
+            System.out.println("Something went wrong!");
     }
 
     /**
