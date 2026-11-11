@@ -4,10 +4,10 @@ public class Product {
     //sku, product name, price, department
     private String sku;
     private String productName;
-    private double price;
+    private Double price;
     private String department;
 
-    public Product(String sku, String productName, double price, String department) {
+    public Product(String sku, String productName, Double price, String department) {
         this.sku = sku;
         this.productName = productName;
         this.price = price;
@@ -30,11 +30,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
