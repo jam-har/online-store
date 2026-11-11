@@ -48,11 +48,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "sku='" + sku + '\'' +
-                ", productName='" + productName + '\'' +
-                ", price=" + price +
-                ", department='" + department + '\'' +
-                '}';
+        return
+        String.format("%-10s|%-40s|%-10.2f|%-20s",sku, productName, price, department);
     }
 }
